@@ -12,5 +12,5 @@ class NewsViewSet(viewsets.ModelViewSet):
 
 
 class AapatKalinSewaViewSet(viewsets.ModelViewSet):
-    serializer_class = AapatKalinSewa
+    serializer_class = AapatKalinSewaSerializer
     queryset = AapatKalinSewa.objects.all()
