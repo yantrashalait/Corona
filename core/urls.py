@@ -5,6 +5,7 @@ from . import views
 
 router = SimpleRouter()
 router.register(r'news', views.NewsViewSet, basename='news')
+router.register(r'aapatkalin', vews.AapatKalinSewaViewSet, basename="aapatkalin")
 
 
 urlpatterns = []
