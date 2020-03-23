@@ -14,8 +14,6 @@ class NewsViewSet(viewsets.ModelViewSet):
         print('adsadasdsad')
         serializer = self.get_serializer(self.get_queryset(), many=True)
         return Response({
-            "ack": "success",
-            "ack_msg": "successfully fetched data",
             "data": serializer.data
         })
 
@@ -25,8 +23,6 @@ class NewsViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         serializer = self.get_serializer(self.get_object())
         return Response({
-            "ack": "success",
-            "ack_msg": "successfully fetched data",
             "data": serializer.data
         })
 
@@ -34,14 +30,11 @@ class NewsViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         if not serializer.is_valid():
             return Response({
-                "ack": "failure",
-                "ack_msg": serializer.errors
+                "data": serializer.errors
             })
 
         self.perform_create(serializer)
         return Response({
-            "ack": "success",
-            "ack_msg": "successfully created",
             "data": serializer.data
         })
 
@@ -53,8 +46,6 @@ class AapatKalinSewaViewSet(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         serializer = self.get_serializer(self.get_queryset(), many=True)
         return Response({
-            "ack": "success",
-            "ack_msg": "successfully fetched data",
             "data": serializer.data
         })
 
@@ -64,8 +55,6 @@ class AapatKalinSewaViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         serializer = self.get_serializer(self.get_object())
         return Response({
-            "ack": "success",
-            "ack_msg": "successfully fetched data",
             "data": serializer.data
         })
 
@@ -73,13 +62,10 @@ class AapatKalinSewaViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         if not serializer.is_valid():
             return Response({
-                "ack": "failure",
-                "ack_msg": serializer.errors
+                "data": serializer.errors
             })
 
         self.perform_create(serializer)
         return Response({
-            "ack": "success",
-            "ack_msg": "successfully created",
             "data": serializer.data
         })
