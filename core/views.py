@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -10,7 +10,76 @@ class NewsViewSet(viewsets.ModelViewSet):
     serializer_class = NewsSerializer
     queryset = News.objects.all()
 
+    def list(self, request, *args, **kwargs):
+        print('adsadasdsad')
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        return Response({
+            "ack": "success",
+            "ack_msg": "successfully fetched data",
+            "data": serializer.data
+        })
+
+    def get_object(self, *args, **kwargs):
+        return get_object_or_404(News, id=self.kwargs.get('pk'))
+
+    def retrieve(self, request, *args, **kwargs):
+        serializer = self.get_serializer(self.get_object())
+        return Response({
+            "ack": "success",
+            "ack_msg": "successfully fetched data",
+            "data": serializer.data
+        })
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if not serializer.is_valid():
+            return Response({
+                "ack": "failure",
+                "ack_msg": serializer.errors
+            })
+
+        self.perform_create(serializer)
+        return Response({
+            "ack": "success",
+            "ack_msg": "successfully created",
+            "data": serializer.data
+        })
+
 
 class AapatKalinSewaViewSet(viewsets.ModelViewSet):
     serializer_class = AapatKalinSewaSerializer
     queryset = AapatKalinSewa.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        return Response({
+            "ack": "success",
+            "ack_msg": "successfully fetched data",
+            "data": serializer.data
+        })
+
+    def get_object(self, *args, **kwargs):
+        return get_object_or_404(AapatKalinSewa, id=self.kwargs.get('pk'))
+
+    def retrieve(self, request, *args, **kwargs):
+        serializer = self.get_serializer(self.get_object())
+        return Response({
+            "ack": "success",
+            "ack_msg": "successfully fetched data",
+            "data": serializer.data
+        })
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if not serializer.is_valid():
+            return Response({
+                "ack": "failure",
+                "ack_msg": serializer.errors
+            })
+
+        self.perform_create(serializer)
+        return Response({
+            "ack": "success",
+            "ack_msg": "successfully created",
+            "data": serializer.data
+        })
