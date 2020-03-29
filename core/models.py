@@ -21,3 +21,15 @@ class AapatKalinSewa(models.Model):
 
     def __str__(self):
         return self.phone_number
+
+
+class Numbers(models.Model):
+    parikshyan_gariyeko = models.CharField(max_length=255)
+    sankraman_nadekhiyeko = models.CharField(max_length=255)
+    sankraman_dekhiyeko = models.CharField(max_length=255)
+    in_isolation = models.CharField(max_length=255)
+    niko_bhayeko = models.CharField(max_length=255)
+    mrityu_bhayeko = models.CharField(max_length=255)
+
+    def __str__(self):
+        return "Numbers"
